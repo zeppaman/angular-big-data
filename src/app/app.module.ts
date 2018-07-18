@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { SourceDBService } from 'src/app/source-db.service';
-import { LokiTestService } from 'src/app/loki.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LokiModule } from 'src/app/loki/loki.module';
+import { DatabaseService } from 'src/app/database.service';
 
 
 @NgModule({
@@ -17,7 +17,7 @@ import { LokiModule } from 'src/app/loki/loki.module';
     HttpClientModule,
     LokiModule
   ],
-  providers: [SourceDBService,LokiTestService],
+  providers: [SourceDBService,DatabaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

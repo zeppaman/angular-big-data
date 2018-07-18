@@ -4,6 +4,21 @@
     Welcome to {{ title }}!
   </h1>
 
-  <button (click)="this.click()" >Click</button>
+  <button (click)="this.click()" >Import</button>
+
+  <button (click)="this.query()" >Query</button>
+
+<h2>Data</h2>
+<table>
+  <tr *ngFor="let user of users">
+     <td>{{user.last_name}}</td>
+     <td>{{user.first_name}}</td>
+     <td>{{user.bird_date}}</td>
+     
+     
+  </tr>
+</table>
+
+<h2>Logs</h2>
 
 

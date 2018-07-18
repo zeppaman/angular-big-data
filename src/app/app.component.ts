@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LokiTestService } from 'src/app/loki.service';
+import { DatabaseService } from 'src/app/database.service';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +8,24 @@ import { LokiTestService } from 'src/app/loki.service';
 })
 export class AppComponent {
   title = 'app';
+  users:any[]=[];
+   settings:any= {
+      provider: "pouch",
+  };
 
-  constructor(private loki:LokiTestService)
+  constructor(private database:DatabaseService)
   {}
 
     click()
     {
       this.title="clicked";
       console.log("clicked");
+      this.database.loadData(this.settings.provider);
+    }
 
-      this.loki.bulkinsert();
+    query()
+    {
+      console.log("clicked query");
+       this.users=this.database.query(this.settings.provider);
     }
 }
