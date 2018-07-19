@@ -10,21 +10,26 @@ import { PouchDatabase } from 'src/app/database/pouch.database';
 })
 export class DatabaseService {
 
-  providers = new Map<string, DatabaseProvider>();
+  private providers = new Map<string, DatabaseProvider>();
 
   constructor(private source: SourceDBService, private lokiService: LokiService) {
-    this.providers["loki"] = new LokiDatabase();
-    this.providers["pouch"] = new PouchDatabase();
+    this.providers.set("loki", new LokiDatabase());
+    this.providers.set("pouch", new PouchDatabase());
   }
 
   loadData(provider: string) {
-    let currentProvider: DatabaseProvider = this.providers[provider];
+    let currentProvider: DatabaseProvider = this.providers.get(provider);
     currentProvider.bulkinsert(this.source.downloadData());
   }
 
   query(provider: string)
   {
-    let currentProvider: DatabaseProvider = this.providers[provider];
+    let currentProvider: DatabaseProvider = this.providers.get(provider);
     return currentProvider.query();
+  }
+
+  getProviders():Map<string, DatabaseProvider>
+  {
+    return this.providers;
   }
 }

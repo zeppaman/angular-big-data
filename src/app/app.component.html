@@ -4,6 +4,11 @@
     Welcome to {{ title }}!
   </h1>
 
+  Current provider: {{settings.provider}} <br>
+ <select  (ngModel)="settings.provider"  (change)="changeProvider($event.target.value);">
+   <option  *ngFor="let provider of settings.providers" value="{{provider}}">{{provider}}</option>
+ </select>
+<br>
   <button (click)="this.click()" >Import</button>
 
   <button (click)="this.query()" >Query</button>

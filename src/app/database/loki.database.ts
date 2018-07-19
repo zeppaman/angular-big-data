@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SourceDBService } from 'src/app/source-db.service';
 import { LokiService } from 'src/app/loki/loki.service';
 import { DatabaseProvider } from 'src/app/database/database';
-import { Observable } from 'rxjs';
+import { Observable,from } from 'rxjs';
 
 
 export class LokiDatabase implements DatabaseProvider {
@@ -36,7 +36,8 @@ export class LokiDatabase implements DatabaseProvider {
   }
 
   query() {
-    return this.users.find({ 'first_name': { '$eq': 'Friedrich' } });
+    
+    return from( this.users.find({ 'first_name': { '$eq': 'Friedrich' } }));
   }
 
 }

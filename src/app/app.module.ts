@@ -17,7 +17,7 @@ import { DatabaseService } from 'src/app/database.service';
     HttpClientModule,
     LokiModule
   ],
-  providers: [SourceDBService,DatabaseService],
+  providers: [SourceDBService, DatabaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
