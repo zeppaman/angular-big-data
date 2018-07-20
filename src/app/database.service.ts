@@ -18,8 +18,9 @@ export class DatabaseService {
   }
 
   loadData(provider: string) {
-    let currentProvider: DatabaseProvider = this.providers.get(provider);
-    currentProvider.bulkinsert(this.source.downloadData());
+    let currentProvider: DatabaseProvider = this.providers.get(provider);   
+    
+    currentProvider.bulkinsert(this.source.downloadData());   
   }
 
   query(provider: string)

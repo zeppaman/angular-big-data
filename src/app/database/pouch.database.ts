@@ -36,7 +36,7 @@ export class PouchDatabase implements DatabaseProvider {
 
   bulkinsert(sourceData: Observable<any>) {
     sourceData.subscribe(data => {
-      console.log(data);
+      //console.log(data);
 
       data.forEach(element => {
         // element._id=element.first_name+" "+element.id;

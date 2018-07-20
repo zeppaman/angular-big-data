@@ -24,14 +24,14 @@ export class LokiDatabase implements DatabaseProvider {
 
   bulkinsert(sourceData:Observable<any>) {
     sourceData.subscribe(data => {
-      console.log(data);
+      //console.log(data);
 
       data.forEach(element => {
         //console.log(element);
         this.users.insert(element);
       });
 
-      console.log(this.users.data.length);
+     // console.log(this.users.data.length);
     })
   }
 

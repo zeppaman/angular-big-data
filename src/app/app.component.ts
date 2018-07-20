@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DatabaseService } from 'src/app/database.service';
 import { DatabaseProvider } from 'src/app/database/database';
+import { Stopwatch } from 'src/app/logging/Stopwatch';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,8 @@ export class AppComponent {
     provider: "loki",
     providers: []
   };
+
+   stopwatch:Stopwatch= new Stopwatch();
 
   constructor(private database: DatabaseService) {
 
@@ -30,15 +33,16 @@ export class AppComponent {
 
   click() {
     this.title = "importing";
-    console.log("importing");
+    this.stopwatch.start();
     this.database.loadData(this.settings.provider);
-    console.log("imported");
+    this.stopwatch.stop();
     this.title = 'imported';
-
+    console.log("data imported in:",this.stopwatch.totalMilliseconds(),"ms");
   }
 
   query() {
     console.log('clicked query');
+    this.stopwatch.start();
     this.users = [];
     this.database.query(this.settings.provider).subscribe((x) => {
       console.log(x);
@@ -47,6 +51,8 @@ export class AppComponent {
       } else {
         this.users.push(x);
       }
+      this.stopwatch.stop();
+      console.log("query done in:",this.stopwatch.totalMilliseconds(),"ms");
     });
   }
 }
